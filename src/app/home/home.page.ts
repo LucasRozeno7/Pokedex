@@ -1,12 +1,24 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage {
+export class HomePage  {
+  
+    
+  constructor(
+    private navCtrl:NavController
+  ) {}
 
-  constructor() {}
+ showKanto(){
+ this.navCtrl.navigateForward('kanto')
+ }
+ showjohto(){
+ this.navCtrl.navigateForward('johto')
+ }
+  
 
 }

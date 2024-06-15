@@ -1,0 +1,47 @@
+<ion-header>
+
+  <ion-toolbar>
+    <div class="toolbar">
+      <ion-button (click)="showHome()" fill="clear"> <ion-icon name="arrow-back-outline"></ion-icon> </ion-button>
+      <ion-title>
+        Pokédex
+      </ion-title>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+  <form class="pesquisabox" >
+    <input type="text" #input (keyup)="search(input.value)"  placeholder="Buscar pokémon..." class="pesquisa">
+    <ion-icon name="search-outline" class="icon" ></ion-icon>
+  </form>
+  
+  <h1>Pokémon</h1>
+  <ng-template ngFor let-pokemon [ngForOf]="getAllpokemons">
+    
+    <ion-card *ngIf="pokemon.status"  [routerLink]="['/details', pokemon.status.id]"  class="card">
+      <div class="card">
+        <img [src]="pokemon.status.sprites.front_default" [alt]="pokemon.name">
+        <ion-card-content>
+          <ion-card-title> #{{pokemon.status.id}} {{pokemon.name}}</ion-card-title>
+          <ul>
+            <li *ngFor="let value of pokemon.status.types" type="none" class="{{value.type.name}}">
+              {{value.type.name}}
+            </li>
+          </ul>
+        </ion-card-content>
+      </div>
+    </ion-card>
+
+    
+  </ng-template>
+
+
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end" (click)="scrollToTop()">
+    <ion-fab-button>
+      <ion-icon name="chevron-up-circle"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content>

@@ -24,19 +24,7 @@ ion-button{
     --color: rgb(0, 0, 0);
 }
 
-li{
-    width: 66px;
-    margin-bottom: 4px;
-    border: 1px solid #a3a3a3;
-    border-radius: 4px;
-    border: 1px solid rgba(0, 0, 0, .2);
-    color: #fff;
-    font-size: .75rem;
-    font-weight: normal;
-    line-height: 1.5rem;
-    text-align: center;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, .7);
-}
+
 
 .pesquisabox{
     display: flex;
@@ -61,6 +49,22 @@ li{
     border-bottom: solid 2px #000000;
     border-radius: 0px 0px 15px 15px;
     box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+
+
+
+.info li{
+    width: 66px;
+    margin-bottom: 4px;
+    border: 1px solid #a3a3a3;
+    border-radius: 4px;
+    border: 1px solid rgba(0, 0, 0, .2);
+    color: #fff;
+    font-size: .75rem;
+    font-weight: normal;
+    line-height: 1.5rem;
+    text-align: center;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, .7);
 }
 
 .info img {
@@ -117,6 +121,7 @@ h1 {
     text-align: center;
     box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 }
+
 .Habilidades li {
     margin: 10px;
     border-radius: 20px;
@@ -231,38 +236,4 @@ ion-icon{
 
 .fairy {
     background-color: #ee99ee;
-}
-
-/*Cores dos poke*/
-.black{
-    background-color: black;
-}
-.blue{
-    background-color: blue;
-    color: blue;
-}
-.brown{
-    background-color: brown;
-}
-.gray{
-    background-color: gray;
-}
-.green {
-    background-color: green;
-}
-.pink {
-    background-color: pink;
-}
-.purple {
-    background-color: purple;
-}
-.red {
-    background-color: red;
-}
-.white {
-    background-color: white;
-    color: #000000;
-}
-.yellow {
-    background-color: yellow;
 }

@@ -19,8 +19,12 @@ export class LoginPage {
       this.router.navigate(['/home']);
     } catch (error) {
       console.error('Erro ao fazer login:', error);
+      alert('Não foi possivel se conectar',);
     }
   }
+
+ 
+
 }
 
 

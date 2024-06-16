@@ -44,5 +44,17 @@ export class KantoPage implements OnInit {
   scrollToTop() {
     this.content.scrollToTop(500);
   }
+  public brilhante: boolean = true
+ 
+
+  change(){
+   return
+  }
+ 
+  public genero: boolean = true
+ 
+  mudar(){
+   return
+  }
 
 }

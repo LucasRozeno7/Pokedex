@@ -1,5 +1,4 @@
 <ion-header>
-
   <ion-toolbar>
     <div class="toolbar">
       <ion-button (click)="showHome()" fill="clear"> <ion-icon name="arrow-back-outline"></ion-icon> </ion-button>
@@ -12,15 +11,124 @@
 
 
 <ion-content>
-  <form class="pesquisabox" >
-    <input type="text" #input (keyup)="search(input.value)"  placeholder="Buscar pokémon..." class="pesquisa">
-    <ion-icon name="search-outline" class="icon" ></ion-icon>
+  <form class="pesquisabox">
+    <input type="text" #input (keyup)="search(input.value)" placeholder="Buscar pokémon..." class="pesquisa">
+    <ion-icon name="search-outline" class="icon"></ion-icon>
   </form>
-  
+
   <h1>Pokémon</h1>
   <ng-template ngFor let-pokemon [ngForOf]="getAllpokemons">
-    
-    <ion-card *ngIf="pokemon.status"  [routerLink]="['/details', pokemon.status.id]"  class="card">
+    <ion-accordion-group expand="inset">
+      <ion-accordion *ngIf="pokemon.status">
+        <ion-item slot="header" color="light">
+          <ion-card>
+            <div class="card">
+              <img [src]="pokemon.status.sprites.front_default" [alt]="pokemon.name">
+              <ion-card-content>
+                <ion-card-title> #{{pokemon.status.id}} {{pokemon.name}}</ion-card-title>
+                <ul>
+                  <li *ngFor="let value of pokemon.status.types" type="none" class="{{value.type.name}}">
+                    {{value.type.name}}
+                  </li>
+                </ul>
+              </ion-card-content>
+            </div>
+          </ion-card>
+        </ion-item>
+        <div class="ion-padding" slot="content">
+
+          <section class="info {{pokemon.status.types[0].type.name}} ">
+            <div class="alternar">
+              <ion-icon name="female"></ion-icon>
+              <ion-toggle [(ngModel)]="genero" (ionChange)="mudar()" color="light"></ion-toggle>
+              <ion-icon name="male"></ion-icon>
+              <ion-icon name="sparkles-outline"></ion-icon>
+              <ion-toggle [(ngModel)]="brilhante" (ionChange)="change()" color="light"></ion-toggle>
+            </div>
+
+            <div>
+              <div *ngIf="genero && brilhante" class="infoimg">
+                <img [src]="pokemon.status.sprites.front_default">
+                <img [src]="pokemon.status.sprites.back_default">
+              </div>
+
+              <div *ngIf="!genero && brilhante" class="infoimg">
+                <img [src]="pokemon.status.sprites.front_female">
+                <img [src]="pokemon.status.sprites.back_female">
+              </div>
+
+              <div *ngIf="!brilhante && genero" class="infoimg">
+                <img [src]="pokemon.status.sprites.front_shiny">
+                <img [src]="pokemon.status.sprites.back_shiny">
+              </div>
+
+              <div *ngIf="!genero && !brilhante" class="infoimg">
+                <img [src]="pokemon.status.sprites.front_shiny_female">
+                <img [src]="pokemon.status.sprites.back_shiny_female">
+              </div>
+            </div>
+            <ion-grid>
+              <ion-row>
+                <ion-col>Peso ⏲</ion-col>
+                <ion-col>Tipo</ion-col>
+                <ion-col>Altura 📏</ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col> <strong>{{pokemon.status.weight}}</strong> </ion-col>
+                <ion-col>
+                  <ul class="tipos">
+                    <li type="none" *ngFor="let value of pokemon.status.types" class="{{value.type.name}}">
+                      {{value.type.name}}
+                    </li>
+                  </ul>
+                </ion-col>
+                <ion-col> <strong>{{pokemon.status.height}}</strong></ion-col>
+              </ion-row>
+            </ion-grid>
+          </section>
+          <div class="Habilidades">
+            <h1>Habilidades</h1>
+            <ol>
+              <li *ngFor="let value of pokemon.status.abilities">{{value.ability.name}}</li>
+            </ol>
+          </div>
+
+          <section class="stats">
+            <h1>Stats</h1>
+            <table>
+              <tr *ngFor="let value of pokemon.status.stats">
+                <td>{{value.stat.name}}</td>
+                <td>{{value.base_stat}} <progress class="progress-bar" value="{{value.base_stat}}" max="250"></progress>
+                  250
+                </td>
+              </tr>
+            </table>
+          </section>
+
+          <h1>Ataques</h1>
+          <section>
+            <ion-chip *ngFor="let value of pokemon.status.moves">{{value.move.name}}</ion-chip>
+          </section>
+        </div>
+
+      </ion-accordion>
+    </ion-accordion-group>
+
+  </ng-template>
+
+
+
+
+
+
+
+
+
+
+  <!-- 
+  <ng-template ngFor let-pokemon [ngForOf]="getAllpokemons">
+
+    <ion-card *ngIf="pokemon.status" class="card">
       <div class="card">
         <img [src]="pokemon.status.sprites.front_default" [alt]="pokemon.name">
         <ion-card-content>
@@ -34,8 +142,8 @@
       </div>
     </ion-card>
 
-    
   </ng-template>
+ -->
 
 
   <ion-fab slot="fixed" vertical="bottom" horizontal="end" (click)="scrollToTop()">
